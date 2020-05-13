@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lnk-kfj-io
+  namespace: lnk-kfj
+  labels:
+    app: lnk-kfj-io
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lnk-kfj-io
+  template:
+    metadata:
+      labels:
+        app: lnk-kfj-io
+    spec:
+      containers:
+      - name: lnk-kfj-io
+        image: lnk-kfj-io
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

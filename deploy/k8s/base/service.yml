@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lnk-kfj
+  labels:
+    service: lnk-kfj
+spec:
+  selector:
+    app: lnk-kfj
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP

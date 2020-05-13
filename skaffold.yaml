@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+metadata:
+  name: lnk.kfj.io
+build:
+  artifacts:
+  - image: lnk-kfj-io
+profiles:
+  - name: dev
+    deploy:
+      kustomize:
+        paths: ["deploy/k8s/dev"]
+  - name: prod
+    deploy:
+      kustomize:
+        paths: ["deploy/k8s/prod"]

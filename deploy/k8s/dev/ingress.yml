@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/cors-allow-headers: Origin, Content-Type, Authorization
+    nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
+    nginx.ingress.kubernetes.io/cors-allow-origing: '*'
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  name: lnk-kfj-ingress
+spec:
+  rules:
+  - host: lnk.dev.kfj.io
+    http:
+      paths:
+      - backend:
+          serviceName: lnk-kfj
+          servicePort: 8080
+        path: /
+  tls:
+  - hosts:
+    - lnk.dev.kfj.io
+    secretName: lnk-kfj-tls-cer
